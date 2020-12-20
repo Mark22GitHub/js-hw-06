@@ -34,7 +34,7 @@ console.log(getUsersWithEyeColor(users, 'blue')); // [объект Moore Hensley
 
 const getUsersWithGender = (users, gender) => {
   // твой код
-    const findGender = users.filter(user => user.gender === gender)
+    const findGender = users.filter(user => user.gender === gender).map(user => user.name)
     return findGender;
 };
 
@@ -86,30 +86,16 @@ console.log(getUsersWithAge(users, 30, 40));
 
 
 
-
-
-
-
-
-
-
-
 // Задание 7
 // Получить общую сумму баланса (поле balance) всех пользователей.
 
 const calculateTotalBalance = users => {
   // твой код
+    const totalBalance = users.reduce((acc, users) => acc + users.balance, 0);
+    return totalBalance;
 };
 
 console.log(calculateTotalBalance(users)); // 20916
-
-
-
-
-
-
-
-
 
 
 
@@ -118,16 +104,12 @@ console.log(calculateTotalBalance(users)); // 20916
 
 const getUsersWithFriend = (users, friendName) => {
   // твой код
+    const userGotFriend = users.filter(user => user.friends.includes(friendName)).map(user => user.name);
+    return userGotFriend;
 };
 
 console.log(getUsersWithFriend(users, 'Briana Decker')); // [ 'Sharlene Bush', 'Sheree Anthony' ]
 console.log(getUsersWithFriend(users, 'Goldie Gentry')); // [ 'Elma Head', 'Sheree Anthony' ]
-
-
-
-
-
-
 
 
 
@@ -136,6 +118,8 @@ console.log(getUsersWithFriend(users, 'Goldie Gentry')); // [ 'Elma Head', 'Sher
 
 const getNamesSortedByFriendsCount = users => {
   // твой код
+    const sortedByFriends = users.sort((a,b) => a.friends - b.friends).map(user => user.name);
+    return sortedByFriends;
 };
 
 console.log(getNamesSortedByFriendsCount(users));
@@ -152,6 +136,14 @@ console.log(getNamesSortedByFriendsCount(users));
 
 const getSortedUniqueSkills = users => {
   // твой код
+    
+    const UniqeSkills = users.reduce((allSkills, user) => {
+        allSkills.push(...user.skills);
+
+        return allSkills;
+    }, []).filter(user => user.skills).sort();
+
+    return UniqeSkills;
 };
 
 console.log(getSortedUniqueSkills(users));
