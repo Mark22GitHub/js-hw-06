@@ -136,12 +136,10 @@ console.log(getNamesSortedByFriendsCount(users));
 
 const getSortedUniqueSkills = users => {
   // твой код
-    
     const UniqeSkills = users.reduce((allSkills, user) => {
         allSkills.push(...user.skills);
-
         return allSkills;
-    }, []).filter(user => user.skills).sort();
+    }, []).filter((user, idx, allSkills) => allSkills.indexOf(user) === idx).sort();
 
     return UniqeSkills;
 };
